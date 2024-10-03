@@ -1,0 +1,24 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card {
+    height: 200px;
+    width: 100px;
+    border: 2px solid brown;
+    margin-top: 20px;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden{
+    display: none;
+}
