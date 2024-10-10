@@ -41,11 +41,22 @@ function updateCardsArray() {
     }
 }
 
-function shuffleDeck() {
-    for (let i = deck.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [deck[i], deck[j]] = [deck[j], deck[i]]; //Swap positions
+// Fisher-Yates Shuffle Algorithm 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const randomIndex = getRandomNumber(0, i); 
+        [array[i], array[randomIndex]] = [array[randomIndex], array[i]]; // Swap elements
     }
+    return array;
+}
+
+function shuffleDeck() {
+    const deckBeforeShuffle = [...deck]; //Make a copy of the deck before shuffle to check if the deck is shuffled properly
+    console.log("Deck before shuffle:", deckBeforeShuffle); //Log the copied deck
+
+    shuffle(deck); //Shuffle the original deck
+
+    console.log("Deck after shuffle:", deck); //Log the deck after shuffling
 }
 
 function drawCard() {
@@ -54,7 +65,7 @@ function drawCard() {
         displayCard(drawnCard); //Display the drawn card
         console.log(deck);
     } else {
-        endGame(); //If no more cards, end the game
+        endGame(); //If there's no more cards, end the game
     }
 }
 
