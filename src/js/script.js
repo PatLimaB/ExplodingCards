@@ -6,12 +6,16 @@ const ContainerElement = document.createElement("div");
 const DrawCardButtonElement = document.createElement("button");
 const ResetButtonElement = document.createElement("button");
 const EndGameMessage = document.createElement("h2");
+const WelcomeMessage = document.createElement("h1");
 
 let deck = [];
 
 /* Initializes the card interface by creating buttons and appending them to the body.
-    It also updates the cards array and shuffles the deck. */
+   It also updates the cards array and shuffles the deck. */
 function createCardInterface() {
+    WelcomeMessage.innerText = "Welcome to Exploding Cards!";
+    BodyElement.append(WelcomeMessage); // Moved this line to ensure it's added first
+
     DrawCardButtonElement.innerText = "Draw a Card";
     DrawCardButtonElement.addEventListener("click", drawCard);
     DrawCardButtonElement.classList.add("button");
@@ -73,6 +77,8 @@ function shuffleDeck() {
  * If cards are available, it displays the drawn card, otherwise, it triggers the end of the game.  */
 function drawCard() {
     if (deck.length > 0) {
+        // Hide the welcome message on the first card draw
+        WelcomeMessage.classList.add("hidden");
         const drawnCard = deck.pop();
         displayCard(drawnCard);
         console.log(deck);
@@ -150,8 +156,8 @@ function resetGame() {
     EndGameMessage.classList.add("hidden");
     ContainerElement.innerHTML = ""; 
     DrawCardButtonElement.classList.remove("hidden"); 
-    ResetButtonElement.classList.add("hidden"); // 
-    
+    ResetButtonElement.classList.add("hidden"); 
+    WelcomeMessage.classList.remove("hidden"); // Show the welcome message again
     //Restart the game
     updateCardsArray(); //Rebuild the deck
     shuffleDeck(); 
@@ -159,7 +165,6 @@ function resetGame() {
 }
 
 // This function generates a random number between the specified min and max values, inclusive
-
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min + 1)) + min;
 }

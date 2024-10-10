@@ -28,10 +28,14 @@ body {
     display: none;
 }
 
-h2 {
+h1, h2 {
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 4rem;
+    font-size: 50px;
     color: #0b3232;
+}
+
+h1 {
+    margin-bottom: 40px;
 }
 
 .button {
